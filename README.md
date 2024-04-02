@@ -1,5 +1,11 @@
 # avalanche-gasless-transaction-ts
 
+## Copy env
+
+```
+$ cp .env.sample .env
+```
+
 ## Try this command
 
 ```
