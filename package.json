@@ -1,0 +1,45 @@
+{
+  "name": "hardhat-project",
+  "scripts": {
+    "deploy": "hardhat run --network hackathon scripts/deploy-registry.ts",
+    "deploy:wavax": "hardhat run --network hackathon scripts/deploy-wavax.ts",
+    "register:gasless": "hardhat run --network hackathon scripts/register-gasless.ts",
+    "send": "npx hardhat run scripts/gasless.ts --network subnet"
+  },
+  "devDependencies": {
+    "@metamask/eth-sig-util": "^7.0.1",
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.0.0",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "@opengsn/cli": "^3.0.0-beta.6",
+    "@opengsn/contracts": "^3.0.0-beta.6",
+    "@opengsn/provider": "^3.0.0-beta.6",
+    "@openzeppelin/contracts": "^4.8.3",
+    "@typechain/ethers-v5": "^10.1.0",
+    "@typechain/hardhat": "^6.1.2",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": ">=9.1.0",
+    "@uniswap/v3-periphery": "^1.4.3",
+    "WETH10": "github:WETH10/WETH10",
+    "axios": "^1.4.0",
+    "chai": "^4.2.0",
+    "dotenv": "^16.0.3",
+    "hardhat": "^2.14.0",
+    "hardhat-gas-reporter": "^1.0.8",
+    "solidity-coverage": "^0.8.1",
+    "ts-node": "^10.9.2",
+    "typechain": "^8.1.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@metamask/eth-sig-util": "^7.0.1",
+    "@opengsn/cli": "^3.0.0-beta.6",
+    "@opengsn/contracts": "^3.0.0-beta.6",
+    "@opengsn/provider": "^3.0.0-beta.6",
+    "@openzeppelin/contracts": "^4.8.3",
+    "dotenv": "^16.0.3"
+  }
+}
