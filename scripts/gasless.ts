@@ -17,6 +17,9 @@ const REQUEST_SUFFIX_TYPE = process.env.REQUEST_SUFFIX_TYPE || "";
 const REQUEST_SUFFIX = process.env.REQUEST_SUFFIX || "";
 const SUFFIX = `${REQUEST_SUFFIX_TYPE} ${REQUEST_SUFFIX}`;
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
+const FORWARDER_ADDRESS = process.env.FORWARDER_ADDRESS || "";
+const RECIPIENT_CONTRACT_ADDRESS = process.env.RECIPIENT_CONTRACT_ADDRESS || "";
+const RELAYER_URL = process.env.RELAYER_URL || "";
 
 interface MessageTypeProperty {
   name: string;
@@ -93,7 +96,7 @@ async function main() {
 
   // get forwarder contract
   const Forwarder = await ethers.getContractFactory("Forwarder");
-  const forwarder = Forwarder.attach(process.env.FORWARDER_ADDRESS || "");
+  const forwarder = Forwarder.attach(FORWARDER_ADDRESS);
   console.log(`using chain id ${network.chainId}(${hexChainId})`);
   console.log(`using account ${await account.getAddress()}`);
 
@@ -101,15 +104,14 @@ async function main() {
   const nonce = await forwarder.getNonce(account.getAddress());
 
   // get gaslessERC20 contract
-  const recipientContractAddress = process.env.RECIPIENT_CONTRACT_ADDRESS || "";
-  if (!recipientContractAddress) {
+  if (!RECIPIENT_CONTRACT_ADDRESS) {
     throw new Error(
       "RECIPIENT_CONTRACT_ADDRESS environment variable is not defined or empty"
     );
   }
 
   const gasLessNft = new ethers.Contract(
-    recipientContractAddress,
+    RECIPIENT_CONTRACT_ADDRESS,
     GaslessNftArtifact.abi,
     account
   );
@@ -128,7 +130,7 @@ async function main() {
     forwarder.address,
     func, // function mint() 0x1249c58b
     account.address,
-    recipientContractAddress,
+    RECIPIENT_CONTRACT_ADDRESS,
     BigNumber.from(gasLimit),
     nonce
   );
@@ -162,13 +164,12 @@ async function main() {
     console.log("valid signature: ", recovered);
   }
 
-  const accountPrivateKey = process.env.PRIVATE_KEY;
-  if (!accountPrivateKey) {
+  if (!PRIVATE_KEY) {
     throw new Error("PRIVATE_KEY not set");
   }
 
   const sig = signTypedData({
-    privateKey: Buffer.from(accountPrivateKey, "hex"),
+    privateKey: Buffer.from(PRIVATE_KEY, "hex"),
     data: dataToSign,
     version: SignTypedDataVersion.V4,
   });
@@ -210,15 +211,11 @@ async function main() {
 
   // send relay tx to relay server
   try {
-    const result = await axios.post(
-      process.env.RELAYER_URL as string,
-      requestBody,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const result = await axios.post(RELAYER_URL, requestBody, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     const txHash = result.data.result;
     console.log(`txHash : ${txHash}`);
