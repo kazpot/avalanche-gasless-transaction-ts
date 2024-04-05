@@ -13,13 +13,18 @@ import GaslessNftArtifact from "../artifacts/contracts/GaslessNft.sol/GaslessNft
 const DOMAIN_NAME = process.env.DOMAIN_NAME || "";
 const DOMAIN_VERSION = "1";
 const REQUEST_TYPE = "Message";
-const SUFFIX_TYPE = process.env.SUFFIX_TYPE || "";
-const SUFFIX_NAME = process.env.SUFFIX_NAME || "";
-const REQUEST_TYPE_SUFFIX = `${SUFFIX_TYPE} ${SUFFIX_NAME})`;
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
 const FORWARDER_ADDRESS = process.env.FORWARDER_ADDRESS || "";
 const RECIPIENT_CONTRACT_ADDRESS = process.env.RECIPIENT_CONTRACT_ADDRESS || "";
 const RELAYER_URL = process.env.RELAYER_URL || "";
+
+// request_type_suffix = {suffix_type} {suffix_name}) = bytes32 ABCDEFGHIJKLMNOPQRSTGSN)
+// suffix_type = bytes32
+// suffix_name = ABCDEFGHIJKLMNOPQRSTGSN
+// request_type_suffix = bytes32 ABCDEFGHIJKLMNOPQRSTGSN)
+const SUFFIX_TYPE = process.env.SUFFIX_TYPE || "";
+const SUFFIX_NAME = process.env.SUFFIX_NAME || "";
+const REQUEST_TYPE_SUFFIX = `${SUFFIX_TYPE} ${SUFFIX_NAME})`;
 
 interface MessageTypeProperty {
   name: string;
