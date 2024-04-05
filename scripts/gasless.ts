@@ -13,10 +13,9 @@ import GaslessNftArtifact from "../artifacts/contracts/GaslessNft.sol/GaslessNft
 const DOMAIN_NAME = process.env.DOMAIN_NAME || "";
 const DOMAIN_VERSION = "1";
 const REQUEST_TYPE = "Message";
-const REQUEST_SUFFIX_TYPE = process.env.REQUEST_SUFFIX_TYPE || "";
-const REQUEST_SUFFIX = process.env.REQUEST_SUFFIX || "";
-const SUFFIX = `${REQUEST_SUFFIX_TYPE} ${REQUEST_SUFFIX}`;
-const REQUEST_SUFFIX_FIELD = REQUEST_SUFFIX.slice(0, -1);
+const SUFFIX_TYPE = process.env.SUFFIX_TYPE || "";
+const SUFFIX_NAME = process.env.SUFFIX_NAME || "";
+const REQUEST_TYPE_SUFFIX = `${SUFFIX_TYPE} ${SUFFIX_NAME})`;
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
 const FORWARDER_ADDRESS = process.env.FORWARDER_ADDRESS || "";
 const RECIPIENT_CONTRACT_ADDRESS = process.env.RECIPIENT_CONTRACT_ADDRESS || "";
@@ -57,7 +56,7 @@ function getEIP712Message(
       { name: "nonce", type: "uint256" },
       { name: "data", type: "bytes" },
       { name: "validUntilTime", type: "uint256" },
-      { name: REQUEST_SUFFIX_FIELD, type: REQUEST_SUFFIX_TYPE },
+      { name: SUFFIX_NAME, type: SUFFIX_TYPE },
     ],
   };
 
@@ -142,7 +141,7 @@ async function main() {
     primaryType: eip712Message.primaryType,
     message: {
       ...eip712Message.message,
-      [REQUEST_SUFFIX_FIELD]: Buffer.from(SUFFIX, "utf8"),
+      [SUFFIX_NAME]: Buffer.from(REQUEST_TYPE_SUFFIX, "utf8"),
     },
   };
 
