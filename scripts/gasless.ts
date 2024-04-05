@@ -16,6 +16,7 @@ const REQUEST_TYPE = "Message";
 const REQUEST_SUFFIX_TYPE = process.env.REQUEST_SUFFIX_TYPE || "";
 const REQUEST_SUFFIX = process.env.REQUEST_SUFFIX || "";
 const SUFFIX = `${REQUEST_SUFFIX_TYPE} ${REQUEST_SUFFIX}`;
+const REQUEST_SUFFIX_FIELD = REQUEST_SUFFIX.slice(0, -1);
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
 const FORWARDER_ADDRESS = process.env.FORWARDER_ADDRESS || "";
 const RECIPIENT_CONTRACT_ADDRESS = process.env.RECIPIENT_CONTRACT_ADDRESS || "";
@@ -56,7 +57,7 @@ function getEIP712Message(
       { name: "nonce", type: "uint256" },
       { name: "data", type: "bytes" },
       { name: "validUntilTime", type: "uint256" },
-      { name: REQUEST_SUFFIX, type: REQUEST_SUFFIX_TYPE },
+      { name: REQUEST_SUFFIX_FIELD, type: REQUEST_SUFFIX_TYPE },
     ],
   };
 
@@ -141,9 +142,11 @@ async function main() {
     primaryType: eip712Message.primaryType,
     message: {
       ...eip712Message.message,
-      BYFVPBLXBJUCJMBXHAEWYVH: Buffer.from(SUFFIX, "utf8"),
+      [REQUEST_SUFFIX_FIELD]: Buffer.from(SUFFIX, "utf8"),
     },
   };
+
+  console.log("dataToSign: " + JSON.stringify(dataToSign, null, 2));
 
   const signature = ethSigUtil.signTypedData({
     privateKey: Buffer.from(PRIVATE_KEY, "hex"),
