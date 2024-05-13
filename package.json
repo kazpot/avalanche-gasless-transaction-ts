@@ -20,8 +20,6 @@
     "@typechain/hardhat": "^6.1.2",
     "@types/chai": "^4.2.0",
     "@types/mocha": ">=9.1.0",
-    "@uniswap/v3-periphery": "^1.4.3",
-    "WETH10": "github:WETH10/WETH10",
     "axios": "^1.4.0",
     "chai": "^4.2.0",
     "dotenv": "^16.0.3",
@@ -31,13 +29,5 @@
     "ts-node": "^10.9.2",
     "typechain": "^8.1.0",
     "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "@metamask/eth-sig-util": "^7.0.1",
-    "@opengsn/cli": "^3.0.0-beta.6",
-    "@opengsn/contracts": "^3.0.0-beta.6",
-    "@opengsn/provider": "^3.0.0-beta.6",
-    "@openzeppelin/contracts": "^4.8.3",
-    "dotenv": "^16.0.3"
   }
 }
