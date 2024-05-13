@@ -1,4 +1,4 @@
-# avalanche-gasless-transaction-ts
+# avalanche-gasless-transaction-ts for gas relayer on AvaCloud
 
 ## Copy env
 
@@ -6,10 +6,19 @@
 $ cp .env.sample .env
 ```
 
-## Try this command
+## Preparation
 
 ```
 $ cp .env.sample .env
 $ yarn install
-$ npx hardhat run scripts/gasless.ts --network subnet
+```
+
+## Run
+
+```
+// deploy Gasless NFT
+$ yarn deploy
+
+// call mint function of Gasless NFT
+$ yarn send
 ```

@@ -123,7 +123,7 @@ async function main() {
 
   // get function selector for mint method
   const fragment = gasLessNft.interface.getFunction("mint");
-  const func = gasLessNft.interface.getSighash(fragment);
+  const data = gasLessNft.interface.getSighash(fragment);
 
   const gasLimit = await gasLessNft.estimateGas.mint();
   console.log("estimated gasLimit for mint(): " + gasLimit);
@@ -133,7 +133,7 @@ async function main() {
     DOMAIN_VERSION,
     network.chainId,
     forwarder.address,
-    func, // function mint() 0x1249c58b
+    data, // function mint() 0x1249c58b
     account.address,
     RECIPIENT_CONTRACT_ADDRESS,
     BigNumber.from(gasLimit),

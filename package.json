@@ -1,9 +1,7 @@
 {
   "name": "hardhat-project",
   "scripts": {
-    "deploy": "hardhat run --network hackathon scripts/deploy-registry.ts",
-    "deploy:wavax": "hardhat run --network hackathon scripts/deploy-wavax.ts",
-    "register:gasless": "hardhat run --network hackathon scripts/register-gasless.ts",
+    "deploy": "hardhat run scripts/deploy-gas-less-nft.ts --network subnet",
     "send": "npx hardhat run scripts/gasless.ts --network subnet"
   },
   "devDependencies": {
