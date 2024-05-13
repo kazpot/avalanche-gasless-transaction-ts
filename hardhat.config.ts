@@ -16,7 +16,6 @@ const config: HardhatUserConfig = {
     subnet: {
       url: CHAIN_RPC_URL,
       chainId: parseInt(CHAIN_ID),
-      gasPrice: 700000000000,
       accounts: [PRIVATE_KEY],
     },
   },
