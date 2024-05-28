@@ -1,8 +1,9 @@
 {
   "name": "hardhat-project",
   "scripts": {
-    "deploy": "hardhat run scripts/deploy-gas-less-nft.ts --network subnet",
-    "send": "npx hardhat run scripts/gasless.ts --network subnet"
+    "deploy": "npx hardhat run scripts/deploy-gas-less-nft.ts --network subnet",
+    "send": "npx hardhat run scripts/gasless.ts --network subnet",
+    "compile": "npx hardhat compile"
   },
   "devDependencies": {
     "@metamask/eth-sig-util": "^7.0.1",
