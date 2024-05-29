@@ -1,5 +1,15 @@
 # avalanche-gasless-transaction-ts for gas relayer on AvaCloud
 
+The gas relayer service is a meta-transaction relayer that adheres to the [EIP-2771 standard](https://eips.ethereum.org/EIPS/eip-2771). This implementation is based on the [Gas Station Network](https://opengsn.org/). Once your gas relayer setup in AvaCloud is complete, you will have access to the following information in the dashboard:
+
+- Gas relayer RPC URL
+- Gas relayer wallet address
+- Forwarder contract address
+- Domain name
+- Domain version
+- Request type
+- Request suffix
+
 ## Copy .env.sample to create .env
 
 ```
