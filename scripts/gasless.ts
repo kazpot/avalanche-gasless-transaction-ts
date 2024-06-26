@@ -121,11 +121,10 @@ async function main() {
     account
   );
 
-  // get function selector for mint method
-  const fragment = gasLessNft.interface.getFunction("mint");
-  const data = gasLessNft.interface.getSighash(fragment);
-
+  // mint
+  const data = gasLessNft.interface.encodeFunctionData("mint", []);
   const gasLimit = await gasLessNft.estimateGas.mint();
+
   console.log("estimated gasLimit for mint(): " + gasLimit);
 
   const eip712Message = getEIP712Message(
@@ -229,7 +228,7 @@ async function main() {
     const receipt = await ethers.provider.waitForTransaction(txHash);
     console.log(`tx mined : ${JSON.stringify(receipt, null, 2)}`);
   } catch (e: any) {
-    console.error(e.response.data);
+    console.error(e.message);
   }
 }
 
