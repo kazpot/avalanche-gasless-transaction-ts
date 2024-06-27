@@ -29,6 +29,14 @@ SUFFIX_NAME="AvaCloudポータルから確認できるsuffix name"
 CHAIN_ID="ブロックチェーンのチェーンID"
 ```
 
+SUFIX_TYPE と SUFFIX_NAME について
+Request Type Suffix が`bytes32 ABCDEFGHIJKLMNOPQRSTGSN)`の場合
+
+```
+SUFFIX_TYPE = "bytes32"
+SUFFIX_NAME = "ABCDEFGHIJKLMNOPQRSTGSN"
+```
+
 ## Preparation
 
 ```
